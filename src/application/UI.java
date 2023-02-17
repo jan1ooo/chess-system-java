@@ -1,6 +1,6 @@
 package application;
 
-import chess.ChessMath;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -50,20 +50,20 @@ public class UI {
         }
     }
 
-    public static void printMath(ChessMath chessMath, List<ChessPiece> captured){
-        printBoard(chessMath.getPieces());
+    public static void printMath(ChessMatch chessMatch, List<ChessPiece> captured){
+        printBoard(chessMatch.getPieces());
         System.out.println();
         printCapturedPieces(captured);
         System.out.println();
-        System.out.println("Turn: " + chessMath.getTurn());
-        if(!chessMath.getCheckMate()){
-            System.out.println("Aguardando jogador: " + chessMath.getCurrentPlayer());
-            if(chessMath.getCheck()){
+        System.out.println("Turn: " + chessMatch.getTurn());
+        if(!chessMatch.getCheckMate()){
+            System.out.println("Aguardando jogador: " + chessMatch.getCurrentPlayer());
+            if(chessMatch.getCheck()){
                 System.out.println("CHECK!");
             }
         }else{
             System.out.println("CHECKMATE!");
-            System.out.println("Vencedor: " + chessMath.getCurrentPlayer());
+            System.out.println("Vencedor: " + chessMatch.getCurrentPlayer());
         }
     }
 

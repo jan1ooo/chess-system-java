@@ -1,8 +1,7 @@
 package application;
 
-import boardgame.Board;
 import chess.ChessException;
-import chess.ChessMath;
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 
@@ -15,28 +14,28 @@ public class Program {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
-        ChessMath chessMath = new ChessMath();
+        ChessMatch chessMatch = new ChessMatch();
         List<ChessPiece> captured = new ArrayList<>();
 
 
-        while(!chessMath.getCheckMate()){
+        while(!chessMatch.getCheckMate()){
             try {
                 UI.clearScreen();
-                UI.printMath(chessMath, captured);
+                UI.printMath(chessMatch, captured);
                 System.out.println();
                 System.out.print("Source: ");
                 ChessPosition source = UI.readChessPosition(sc);
 
-                boolean[][] possibleMoves = chessMath.possibleMoves(source);
+                boolean[][] possibleMoves = chessMatch.possibleMoves(source);
                 UI.clearScreen();
-                UI.printBoard(chessMath.getPieces(), possibleMoves);
+                UI.printBoard(chessMatch.getPieces(), possibleMoves);
 
 
                 System.out.println();
                 System.out.print("Target: ");
                 ChessPosition target = UI.readChessPosition(sc);
 
-                ChessPiece capturedPiece = chessMath.perfomChessMove(source, target);
+                ChessPiece capturedPiece = chessMatch.perfomChessMove(source, target);
 
                 if(capturedPiece != null){
                     captured.add(capturedPiece);
@@ -52,6 +51,6 @@ public class Program {
             }
         }
         UI.clearScreen();
-        UI.printMath(chessMath, captured);
+        UI.printMath(chessMatch, captured);
     }
 }
